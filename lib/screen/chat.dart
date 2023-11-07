@@ -9,17 +9,17 @@ const Map<String, Color> myColors = {
   WHITE: Colors.white
 };
 
-class Diary extends StatefulWidget {
+class Chat extends StatefulWidget {
 
   @override
-  _DiaryState createState() => _DiaryState();
+  _ChatState createState() => _ChatState();
 }
 
-class _DiaryState extends State<Diary> {
+class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Diary',
+      title: 'Chat',
       home: Scaffold(
       ),
     );

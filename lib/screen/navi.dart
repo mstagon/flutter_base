@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/screen/home.dart';
 import 'package:untitled1/screen/diary.dart';
+import 'package:untitled1/screen/calendar.dart';
+import 'package:untitled1/screen/chat.dart';
+import 'package:untitled1/screen/health.dart';
 
 const PRIMARY = "primary";
 const ORANGE = "orange";
-
+const BLACK = "black";
 const Map<String, Color> myColors = {
   PRIMARY: Color.fromRGBO(255, 163, 63, 1),
   ORANGE: Color.fromRGBO(255, 209, 89, 1),
+  BLACK: Colors.black
 };
 
 class RootScreen extends StatefulWidget {
@@ -23,7 +27,7 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin{ 
   void initState() {
     super.initState();
 
-    controller = TabController(length: 2, vsync: this);  // ➋
+    controller = TabController(length: 5, vsync: this);  // ➋
 
     controller!.addListener(tabListener);
   }
@@ -47,46 +51,65 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin{ 
       ),
       backgroundColor: myColors[ORANGE],
       bottomNavigationBar:
-        Container(
-        decoration: BoxDecoration(
-          color: myColors[ORANGE],
+      Container(
+        color: myColors[ORANGE],
+        child : ClipRRect(
           borderRadius: BorderRadius.only(
-            topRight: Radius.circular(30), topLeft: Radius.circular(30)),
-              boxShadow: [
-                BoxShadow(color: Colors.black38, spreadRadius: 0, blurRadius: 10),
-             ],
-           ),
-    child : ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30.0),
-          topRight: Radius.circular(30.0),
-        ),
-        child: BottomNavigationBar(
-          backgroundColor: myColors[ORANGE],
-          currentIndex: controller!.index,
-          onTap: (int index) {
-            setState(() {
-              controller!.animateTo(index);
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: myColors[WHITE],
+            topLeft: Radius.circular(30.0),
+            topRight: Radius.circular(30.0),
+          ),
+          child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            selectedIconTheme: IconThemeData(color: Colors.deepOrange),
+            unselectedIconTheme: IconThemeData(color: Colors.yellow),
+            backgroundColor: myColors[PRIMARY],
+            currentIndex: controller!.index,
+            onTap: (int index) {
+              setState(() {
+                controller!.animateTo(index);
+              });
+            },
+            items: [
+              BottomNavigationBarItem(
+                backgroundColor: myColors[PRIMARY],
+                icon: Icon(
+                  Icons.home,
+                ),
+                label: 'HOME',
               ),
-              label: '홈',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.note,
+              BottomNavigationBarItem(
+                backgroundColor: myColors[PRIMARY],
+                icon: Icon(
+                  Icons.note,
+                ),
+                label: 'DIARY',
               ),
-              label: '일기',
-            ),
-          ],
+              BottomNavigationBarItem(
+                backgroundColor: myColors[PRIMARY],
+                icon: Icon(
+                  Icons.note,
+                ),
+                label: 'CALENDAR',
+
+              ),
+              BottomNavigationBarItem(
+                backgroundColor: myColors[PRIMARY],
+                icon: Icon(
+                  Icons.note,
+                ),
+                label: 'CHAT',
+              ),
+              BottomNavigationBarItem(
+                backgroundColor: myColors[PRIMARY],
+                icon: Icon(
+                  Icons.note,
+                ),
+                label: 'HEALTH',
+              ),
+            ],
+          ),
         ),
       ),
-    ),
     );
   }
 
@@ -96,8 +119,10 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin{ 
     return [
       Home(),
       Diary(),
+      Calendar(),
+      Chat(),
+      Health()
     ];
   }
 
 }
-

@@ -23,10 +23,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: myColors[PRIMARY],
-          title: const Text('Test CustomScrollView'),
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: myColors[PRIMARY],
+        //   title: const Text('Test CustomScrollView'),
+        // ),
         body: CustomScrollView(
           slivers: <Widget>[
           SliverAppBar(

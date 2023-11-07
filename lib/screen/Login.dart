@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_social_button/flutter_social_button.dart';
 import 'package:untitled1/screen/navi.dart';
 
+const PRIMARY = "primary";
+const ORANGE = "orange";
+const WHITE = "white";
+const Map<String, Color> myColors = {
+  PRIMARY: Color.fromRGBO(255, 163, 63, 1),
+  ORANGE: Color.fromRGBO(255, 209, 89, 1),
+  WHITE: Colors.white
+};
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -134,7 +143,7 @@ class _LogInState extends State<Login> {
                               ButtonTheme(
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      if (controller.text == 'devcms21@gmail.com' &&
+                                      if (controller.text == '1234' &&
                                           controller2.text == '1234') {
                                         showSnackBar(context, Text('로그인 성공'));
                                         Navigator.push(
