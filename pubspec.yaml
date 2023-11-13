@@ -38,6 +38,7 @@ dependencies:
   social_login_buttons: ^1.0.7
   flutter_social_button: ^1.1.4+1
   getwidget : any
+  http : any
 
 dev_dependencies:
   flutter_test:
