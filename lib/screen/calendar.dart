@@ -88,7 +88,7 @@ class _CalendarState extends State<Calendar> {
     _selectedEvents = selectedEvents[selectedDay] ?? [];
 
     return Scaffold(
-      backgroundColor: Colors.orange,
+      backgroundColor: myColors[ORANGE],
       body: Column(
         children: [
           Container(
