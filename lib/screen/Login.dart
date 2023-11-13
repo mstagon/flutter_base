@@ -206,7 +206,13 @@ class _LogInState extends State<Login> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children:[
                                     FlutterSocialButton(
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (BuildContext context) =>
+                                                      RootScreen()));
+                                        },
                                         buttonType: ButtonType.facebook,
                                         mini:true// Button type for different type buttons
                                     ),
