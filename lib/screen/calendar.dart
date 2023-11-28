@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'event.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 const PRIMARY = "primary";
 const ORANGE = "orange";
@@ -35,7 +38,7 @@ class _CalendarState extends State<Calendar> {
     return selectedEvents[date] ?? [];
   }
 
-  void _addEvent() {
+  void _addEvent() async {
     final title = _eventController.text;
     if (title.isNotEmpty) {
       final newEvent = Event(title: title, dateTime: selectedDay);
@@ -48,6 +51,9 @@ class _CalendarState extends State<Calendar> {
         _eventController.clear();
         _selectedEvents = selectedEvents[selectedDay]!;
       });
+
+      // 서버로 이벤트 추가 요청
+      await sendEventToBackend(title, selectedDay.toIso8601String());
     }
   }
 
@@ -81,6 +87,23 @@ class _CalendarState extends State<Calendar> {
         ],
       ),
     );
+  }
+
+  Future<String> sendEventToBackend(String title, String date) async {
+    var url = Uri.parse('https://c46f-121-152-69-146.ngrok-free.app/calendar/'); // 실제 서버 URL로 변경
+
+    var response = await http.post(
+      url,
+      body: {'event_name': title, 'event_date': date},
+    );
+
+    if (response.statusCode == 200) {
+      // JSON 디코딩 후 'content' 필드를 반환
+      Map<String, dynamic> responseData = json.decode(response.body);
+      return responseData['content'] ?? 'Success';
+    } else {
+      return 'Failed';
+    }
   }
 
   @override

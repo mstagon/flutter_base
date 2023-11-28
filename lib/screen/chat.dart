@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,7 +8,7 @@ const WHITE = "white";
 const Map<String, Color> myColors = {
   PRIMARY: Color.fromRGBO(255, 163, 63, 1),
   ORANGE: Color.fromRGBO(255, 209, 89, 1),
-  WHITE: Colors.white
+  WHITE: Colors.white,
 };
 
 class Chat extends StatefulWidget {
@@ -29,19 +28,19 @@ class ChatScreenState extends State<Chat> {
   final TextEditingController _textController = TextEditingController();
 
   Future<String> sendDiaryToBackend(String text) async {
-    var url = Uri.parse('https://dd90-125-138-249-130.ngrok-free.app/bot/test/'); // Replace with your Flask server URL
+    var url = Uri.parse("https://c46f-121-152-69-146.ngrok-free.app/chat/solution/"); // Replace with your Flask server URL
 
     var response = await http.post(
       url,
-      body: {'prompt': text},
+      body: {"prompt": text},
     );
 
     if (response.statusCode == 200) {
       // JSON 디코딩 후 'content' 필드를 반환
       Map<String, dynamic> responseData = json.decode(response.body);
-      return responseData['content'] ?? 'Failed to get content from the API response';
+      return responseData["content"] ?? 'Success';
     } else {
-      return 'Failed to send the diary entry';
+      return 'Failed';
     }
   }
 
@@ -83,6 +82,7 @@ class ChatScreenState extends State<Chat> {
       backgroundColor: myColors[ORANGE],
       body: Column(
         children: <Widget>[
+          Text('AI Chat'),
           Flexible(
             child: ListView.builder(
               padding: const EdgeInsets.all(8.0),
@@ -99,28 +99,29 @@ class ChatScreenState extends State<Chat> {
   }
 
   Widget _buildTextComposer() {
-    return IconTheme(
-      data: IconThemeData(color: Colors.blue),
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Row(
-          children: <Widget>[
-            Flexible(
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 8.0),
+      decoration: BoxDecoration(
+        color: myColors[WHITE],
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Row(
+        children: <Widget>[
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: TextField(
                 controller: _textController,
                 onSubmitted: _handleSubmitted,
                 decoration: InputDecoration.collapsed(hintText: "Send a message"),
               ),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 4.0),
-              child: IconButton(
-                icon: Icon(Icons.send),
-                onPressed: () => _handleSubmitted(_textController.text),
-              ),
-            ),
-          ],
-        ),
+          ),
+          IconButton(
+            icon: Icon(Icons.send),
+            onPressed: () => _handleSubmitted(_textController.text),
+          ),
+        ],
       ),
     );
   }
@@ -140,20 +141,55 @@ class ChatMessage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: isUserMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: <Widget>[
+          isUserMessage
+              ? Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: <Widget>[
+                Text('User', style: Theme.of(context).textTheme.subtitle1),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  width: 150,
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                  margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                  child: Text(
+                    text,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          )
+              : Container(),
           Container(
             margin: const EdgeInsets.only(left: 8.0, right: 8.0),
             child: CircleAvatar(
               child: Text(isUserMessage ? 'U' : 'B'),
+              backgroundColor: myColors[PRIMARY],
             ),
           ),
-          Expanded(
+          isUserMessage
+              ? Container()
+              : Expanded(
             child: Column(
-              crossAxisAlignment: isUserMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(isUserMessage ? 'User' : 'Bot', style: Theme.of(context).textTheme.subtitle1),
+                Text('Bot', style: Theme.of(context).textTheme.subtitle1),
                 Container(
-                  margin: const EdgeInsets.only(top: 5.0),
-                  child: Text(text),
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  width: 170,
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                  margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                  child: Text(
+                    text,
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ],
             ),
