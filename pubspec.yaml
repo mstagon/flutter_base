@@ -41,6 +41,14 @@ dependencies:
   social_login_buttons: ^1.0.7
   flutter_social_button: ^1.1.4+1
   getwidget : any
+  table_calendar: ^3.0.9
+  provider: ^6.0.5
+  http: ^0.13.4
+  kakao_flutter_sdk_user: ^1.2.1
+  shared_preferences: ^2.0.20
+  sqflite: ^2.0.0+5
+  path: ^1.8.1
+
 
 dev_dependencies:
   flutter_test:

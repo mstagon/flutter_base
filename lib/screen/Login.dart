@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_social_button/flutter_social_button.dart';
 import 'package:untitled1/screen/navi.dart';
+// import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
+// import 'package:social_login_app/login_platform.dart';
 
 const PRIMARY = "primary";
 const ORANGE = "orange";
@@ -206,7 +208,13 @@ class _LogInState extends State<Login> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children:[
                                     FlutterSocialButton(
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (BuildContext context) =>
+                                                      RootScreen()));
+                                        },
                                         buttonType: ButtonType.facebook,
                                         mini:true// Button type for different type buttons
                                     ),

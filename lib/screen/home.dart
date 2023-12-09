@@ -9,7 +9,6 @@ const Map<String, Color> myColors = {
   WHITE: Colors.white
 };
 
-
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -19,40 +18,67 @@ class Home extends StatefulWidget {
 
 /// This is the private State class that goes with MyStatefulWidget.
 class _HomeState extends State<Home> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: myColors[PRIMARY],
-        //   title: const Text('Test CustomScrollView'),
-        // ),
         body: CustomScrollView(
-          slivers: <Widget>[
-          SliverAppBar(
-            backgroundColor: myColors[ORANGE],
-          expandedHeight: 400.0,
+      slivers: <Widget>[
+        SliverAppBar(
+          backgroundColor: myColors[ORANGE],
+          expandedHeight: 400,
           flexibleSpace: FlexibleSpaceBar(
-            background: Image.asset(
-              'src/img/back.png',
-              fit: BoxFit.fill,
-            ),
-          ),
-        ),
-            SliverFixedExtentList(
-              itemExtent: 50.0,
-              delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                  return Container(
-                    alignment: Alignment.center,
-                    color: myColors[ORANGE],
-                    child: Text('List Item $index',style: TextStyle(fontSize: 20),),
-                  );
-                },
+            background: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(90),
+                  bottomRight: Radius.circular(90),
+                ),
+                color: myColors[PRIMARY],
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'gg',
+                      style: TextStyle(
+                        fontFamily: "PlaypenSans",
+                        fontSize: 36,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Text(
+                      "D-",
+                      style: TextStyle(
+                        fontFamily: "PlaypenSans",
+                        fontWeight: FontWeight.w600,
+                        fontSize: 36,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ],
-        )
-    );
+          ),
+          // floating: true,
+          pinned: true,
+        ),
+        SliverFixedExtentList(
+          itemExtent: 50.0,
+          delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              return Container(
+                alignment: Alignment.center,
+                color: myColors[ORANGE],
+                child: Text(
+                  'List Item $index',
+                  style: TextStyle(fontSize: 20),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    ));
   }
 }
