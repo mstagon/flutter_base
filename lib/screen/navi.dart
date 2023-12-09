@@ -4,6 +4,9 @@ import 'package:untitled1/screen/diary.dart';
 import 'package:untitled1/screen/calendar.dart';
 import 'package:untitled1/screen/chat.dart';
 import 'package:untitled1/screen/health.dart';
+import 'package:untitled1/screen/diary_list.dart';
+
+
 
 const PRIMARY = "primary";
 const ORANGE = "orange";
@@ -118,10 +121,11 @@ class _RootScreenState extends State<RootScreen> with TickerProviderStateMixin{ 
   List<Widget> renderChildren(){
     return [
       Home(),
-      Diary(),
+      DiaryList(),
       Calendar(),
       Chat(),
-      Health()
+      Health(),
+      Diary()
     ];
   }
 
