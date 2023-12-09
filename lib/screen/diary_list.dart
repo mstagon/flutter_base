@@ -1,17 +1,12 @@
-<<<<<<< HEAD
-import 'package:flutter/material.dart';
-import 'package:untitled1/screen/diary.dart';
-import 'package:untitled1/screen/diaryshow.dart';
-import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
-import 'dart:convert';
-=======
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled1/screen/diary.dart';
+import 'package:untitled1/screen/diaryshow.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 import 'package:path/path.dart' as path;
->>>>>>> origin/master
+import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
+import 'dart:convert';
 
 const PRIMARY = "primary";
 const ORANGE = "orange";
@@ -22,7 +17,6 @@ const Map<String, Color> myColors = {
   WHITE: Colors.white
 };
 
-<<<<<<< HEAD
 class DiaryItem {
   final DateTime date;
   final String title;
@@ -37,8 +31,6 @@ class DiaryItem {
 
 
 
-=======
->>>>>>> origin/master
 class DiaryList extends StatefulWidget {
 
   @override
@@ -46,7 +38,6 @@ class DiaryList extends StatefulWidget {
 }
 class _DiaryListState extends State<DiaryList> {
   bool extended = false;
-<<<<<<< HEAD
   List<DiaryItem> diaryItems = [];
 
   @override
@@ -57,11 +48,6 @@ class _DiaryListState extends State<DiaryList> {
 
   @override
   Widget build(BuildContext context) {
-=======
-
-  @override
-  Widget build(BuildContext context){
->>>>>>> origin/master
     return MaterialApp(
       title: 'DiaryList',
       home: Scaffold(
@@ -76,11 +62,7 @@ class _DiaryListState extends State<DiaryList> {
                 children: [
                   TextButton(
                     child: Text("Back"),
-<<<<<<< HEAD
                     onPressed: () {},
-=======
-                    onPressed: (){},
->>>>>>> origin/master
                   ),
                 ],
               ),
@@ -98,7 +80,6 @@ class _DiaryListState extends State<DiaryList> {
                 ],
               ),
             ),
-<<<<<<< HEAD
             ListView.builder(
               shrinkWrap: true,
               itemCount: diaryItems.length,
@@ -109,32 +90,12 @@ class _DiaryListState extends State<DiaryList> {
                   diaryItems[index].content,
                 );
               },
-=======
-            Container(
-              width: 350,
-              height: 70,
-              margin: EdgeInsets.only(
-                top: 30,
-                bottom: 10,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-                color: Colors.white,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("20XX/ XX / XX   제목"),
-                ],
-              ),
->>>>>>> origin/master
             ),
           ],
         ),
       ),
     );
   }
-<<<<<<< HEAD
 
   DateTime parseDateString(String dateString) {
     try {
@@ -181,11 +142,6 @@ class _DiaryListState extends State<DiaryList> {
   FloatingActionButton extendButton() {
     return FloatingActionButton.extended(
       onPressed: () {
-=======
-  FloatingActionButton extendButton() {
-    return FloatingActionButton.extended(
-      onPressed: (){
->>>>>>> origin/master
         setState(() {
           extended = !extended;
           Navigator.push(
@@ -201,7 +157,6 @@ class _DiaryListState extends State<DiaryList> {
       ),
     );
   }
-<<<<<<< HEAD
 
   Widget diaryBlock(DateTime date, String title, String content) {
     final formattedDate = DateFormat("yyyy-MM-dd").format(date);
@@ -236,6 +191,3 @@ class _DiaryListState extends State<DiaryList> {
     );
   }
 }
-=======
-}
->>>>>>> origin/master
