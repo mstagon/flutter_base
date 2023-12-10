@@ -14,10 +14,10 @@ class DiaryShow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.orangeAccent,
-        title: Text('$date $title'),
+        title: Text('제목 : $title'),
       ),
       body: Center(
         child: Padding(

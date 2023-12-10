@@ -55,61 +55,70 @@ class _DiaryListState extends State<DiaryList> {
         floatingActionButton: SizedBox(
           child: extendButton(),
         ),
-        body: Column(
-          children: [
-            Container(
-              child: Row(
-                children: [
-                  TextButton(
-                    child: Text("Back"),
-                    onPressed: () {},
+        body: SingleChildScrollView(
+          child:
+            Column(
+              children: [
+                Container(
+                  child: Row(
+                    children: [
+                      TextButton(
+                        child: Text("Back"),
+                        onPressed: () {},
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("DiaryList",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                    ),
+                ),
+                Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("DiaryList",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: diaryItems.length,
+                  itemBuilder: (context, index) {
+                    return diaryBlock(
+                      diaryItems[index].date,
+                      diaryItems[index].title,
+                      diaryItems[index].content,
+                    );
+                  },
+                ),
+              ],
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: diaryItems.length,
-              itemBuilder: (context, index) {
-                return diaryBlock(
-                  diaryItems[index].date,
-                  diaryItems[index].title,
-                  diaryItems[index].content,
-                );
-              },
-            ),
-          ],
-        ),
+        )
       ),
     );
   }
 
   DateTime parseDateString(String dateString) {
     try {
+      if (dateString == null || dateString.isEmpty) {
+        // dateString이 비어 있거나 null인 경우 예외 처리
+        throw Exception('Date string is empty or null');
+      }
+
       final formattedDate = DateFormat("yyyy-MM-dd").parse(dateString);
       return formattedDate;
     } catch (e) {
-      print('Error parsing date: $e');
+      print('Error parsing date: $e, dateString: $dateString');
       return DateTime.now();
     }
   }
 
+
   Future<void> fetchDataFromAPI() async {
     try {
-      final response = await http.get(Uri.parse('https://aeea-203-237-200-33.ngrok-free.app/get_list/'));
+      final response = await http.get(Uri.parse('https://9ee4-125-138-128-205.ngrok-free.app/get_list/'));
 
       if (response.statusCode == 200) {
         final dynamic data = json.decode(response.body);
@@ -119,7 +128,7 @@ class _DiaryListState extends State<DiaryList> {
             diaryItems = List.generate(
               data.length,
                   (i) => DiaryItem(
-                date: parseDateString(data[i]['date'] ?? ''),
+                date: parseDateString(data[i]['create_date'] ?? ''),
                 title: data[i]['title'] ?? '',
                 content: data[i]['content'] ?? '',
               ),
@@ -191,3 +200,4 @@ class _DiaryListState extends State<DiaryList> {
     );
   }
 }
+

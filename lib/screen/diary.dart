@@ -241,7 +241,7 @@ class _DiaryState extends State<Diary> {
 
 
 Future<String> sendDiaryToBackend(String text, String title, DateTime date) async {
-  var url = Uri.parse('https://aeea-203-237-200-33.ngrok-free.app/posts/'); // Replace with your Flask server URL
+  var url = Uri.parse('https://9ee4-125-138-128-205.ngrok-free.app/posts/'); // Replace with your Flask server URL
 
   // Format the date to send in "%Y-%m-%d" format
   var formattedDate = "${date.year}-${_twoDigits(date.month)}-${_twoDigits(date.day)}";
