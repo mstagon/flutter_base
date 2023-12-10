@@ -42,158 +42,205 @@ class SolutionItem {
 class _HomeState extends State<Home> {
   List<ScheduleItem> schedule = [];
   String solution = '';
+  String name = '';
+  String breed = '';
+  String age = '';
+  String weight = '';
 
   @override
   void initState() {
     super.initState();
     fetchEventDataFromAPI();
     fetchSolutionDataFromAPI();
+    fetchProfileDataFromAPI();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: myColors[ORANGE],
-        body: Stack(
-          children: [
-            Row(
-              children: [
-                TextButton(
-                  child: Text("Back"),
-                  onPressed: (){},
-                ),
-                Spacer(),
-                IconButton(
-                  icon: Icon(Icons.dehaze),
-                  onPressed: (){},
-                )],
-            ),
-            Stack(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 55,top: 75),
-                  width: 300,
-                  height: 150,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.deepOrangeAccent
-                  ),
-                ),
-                Row(
-                  children: [
-                    Container(
-                      margin : EdgeInsets.only(left: 80,top: 105),
-                      width: 80,
-                      height: 80,
-                      decoration: BoxDecoration(
-                          boxShadow: [BoxShadow(
-                              color: Colors.grey,
-                              spreadRadius: 5,
-                              blurRadius: 5,
-                              offset: Offset(0,3)
-                          )],
-                          color: Colors.black,
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: AssetImage("src/img/loginicon.png")
-                          )
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 100,left: 10),
-                      width: 170,
-                      height: 100,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              SizedBox(width: 30,),
-                              Text(
-                                '개이름',
-                                style: TextStyle(
-                                    fontSize: 18
-                                ),
-                              ),
-                              SizedBox(width: 20,),
-                              Text('개 종류',
-                                style: TextStyle(fontSize: 12,
-                                    fontWeight: FontWeight.w600),)
-                            ],
-                          ),
-                          Divider(height: 1,),
-                          SizedBox(height: 5,),
-                          Row(
-                            children: [
-                              SizedBox(width: 20,),
-                              Text('나이')
-                            ],
-                          ),
-                          SizedBox(height: 5,),
-                          Row(
-                            children: [
-                              SizedBox(width: 20,),
-                              Text('체중')
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 30,top:300,right: 30),
-              width: double.infinity,
-              height: 400,
-              decoration: BoxDecoration(
-                color: Colors.white
+      backgroundColor: myColors[ORANGE],
+      body: Stack(
+        children: [
+          Row(
+            children: [
+              TextButton(
+                child: Text("Back"),
+                onPressed: (){},
               ),
-              child:Column(
-                    children: [
-                      Row(
-                        children: [
-                          SizedBox(width: 20,),
-                          Text(
-                            'schedule',
-                            style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w700
-                            ),
-                          ),
-                          Spacer(),
-                          IconButton(
-                            onPressed: (){
-                              setState(() {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => Calendar()));
-                              });
-                            },
-                            icon: Icon(Icons.calendar_month),
-                          ),
-                          SizedBox(width: 15,)
-                        ],
-                      ),
-                      ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: schedule.length,
-                        itemBuilder: (context, index) {
-                          return scheduleBlock(
-                            schedule[index].event_name,
-                          );
-                        },
-                      ),
-                    ]
+              Spacer(),
+              IconButton(
+                icon: Icon(Icons.dehaze),
+                onPressed: (){},
+              )],
+          ),
+          Stack(
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 55,top: 75),
+                width: 300,
+                height: 150,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.deepOrangeAccent
                 ),
-
+              ),
+              Row(
+                children: [
+                  Container(
+                    margin : EdgeInsets.only(left: 80,top: 105),
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                        boxShadow: [BoxShadow(
+                            color: Colors.grey,
+                            spreadRadius: 5,
+                            blurRadius: 5,
+                            offset: Offset(0,3)
+                        )],
+                        color: Colors.black,
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage("src/img/loginicon.png")
+                        )
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 100,left: 10),
+                    width: 170,
+                    height: 100,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(width: 30,),
+                            Text(
+                              name,
+                              style: TextStyle(
+                                  fontSize: 18
+                              ),
+                            ),
+                            SizedBox(width: 20,),
+                            Text(breed,
+                              style: TextStyle(fontSize: 12,
+                                  fontWeight: FontWeight.w600),)
+                          ],
+                        ),
+                        Divider(height: 1,),
+                        SizedBox(height: 5,),
+                        Row(
+                          children: [
+                            SizedBox(width: 20,),
+                            Text('나이 : '),
+                            Text(age)
+                          ],
+                        ),
+                        SizedBox(height: 5,),
+                        Row(
+                          children: [
+                            SizedBox(width: 20,),
+                            Text('몸무게 : '),
+                            Text(weight),
+                            Text('Kg')
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 30,top:300,right: 30),
+            width: double.infinity,
+            height: 400,
+            decoration: BoxDecoration(
+                color: Colors.white
             ),
-            _buildBottomDrawer(context),
-          ],
-        ),
-      );
+            child:Column(
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(width: 20,),
+                      Text(
+                        'schedule',
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w700
+                        ),
+                      ),
+                      Spacer(),
+                      IconButton(
+                        onPressed: (){
+                          setState(() {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Calendar()));
+                          });
+                        },
+                        icon: Icon(Icons.calendar_month),
+                      ),
+                      SizedBox(width: 15,)
+                    ],
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: schedule.length,
+                    itemBuilder: (context, index) {
+                      return scheduleBlock(
+                        schedule[index].event_name,
+                      );
+                    },
+                  ),
+                ]
+            ),
+
+          ),
+          _buildBottomDrawer(context),
+        ],
+      ),
+    );
+  }
+  Future<void> fetchProfileDataFromAPI() async {
+    try {
+      final response = await http.get(Uri.parse('https://9ee4-125-138-128-205.ngrok-free.app/get_profile/'));
+
+      if (response.statusCode == 200) {
+        final dynamic data = json.decode(response.body);
+        print('Received data from API: $data');
+
+        if (data != null && data is List) {
+          // 받아온 List에서 첫 번째 요소 추출
+          if (data.isNotEmpty) {
+            final dynamic content = data[0];
+
+            // content가 Map 형태인지 확인
+            if (content is Map<String, dynamic>) {
+              setState(() {
+                // 변수 초기화
+                name = content['name'] as String;
+                breed = content['breed'] as String;
+                age = content['age'].toString(); // age가 숫자로 들어오는 경우에 문자열로 변환
+                weight = content['weight'].toString(); // weight도 숫자로 들어오는 경우에 문자열로 변환
+              });
+            } else {
+              throw Exception('Invalid data format received from API: Content is not a Map');
+            }
+          } else {
+            throw Exception('Invalid data format received from API: Empty list');
+          }
+        } else {
+          throw Exception('Invalid data format received from API: Data is not a List');
+        }
+      } else {
+        throw Exception('Failed to load data from API. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error fetching data from API: $e');
+      // 에러 처리 또는 사용자에게 알리는 로직 추가
+    }
   }
   Future<void> fetchEventDataFromAPI() async {
     try {
@@ -207,7 +254,7 @@ class _HomeState extends State<Home> {
             schedule = List.generate(
               data.length,
                   (i) => ScheduleItem(
-                    event_name: data[i]['event_name'] ?? '',
+                event_name: data[i]['event_name'] ?? '',
               ),
             );
           });
@@ -311,18 +358,18 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-                'solution',
+              'solution',
               style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.w700
+                  fontSize: 25,
+                  fontWeight: FontWeight.w700
               ),
             ),
             SizedBox(height: 15,),
             Text(
               solution.replaceAll('�', ''),
               style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500
               ),
             ),
           ],

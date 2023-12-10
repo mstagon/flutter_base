@@ -53,7 +53,7 @@ class _CalendarState extends State<Calendar> {
       });
 
       // 서버로 이벤트 추가 요청
-      await sendEventToBackend(title, selectedDay.toIso8601String());
+      await sendEventToBackend(title, "${selectedDay.year}-${selectedDay.month}-${selectedDay.day}");
     }
   }
 
@@ -90,7 +90,7 @@ class _CalendarState extends State<Calendar> {
   }
 
   Future<String> sendEventToBackend(String title, String date) async {
-    var url = Uri.parse('https://c46f-121-152-69-146.ngrok-free.app/calendar/'); // 실제 서버 URL로 변경
+    var url = Uri.parse('https://9ee4-125-138-128-205.ngrok-free.app/calendar/'); // 실제 서버 URL로 변경
 
     var response = await http.post(
       url,
