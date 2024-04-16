@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:untitled1/screen/diary_list.dart';
 
+import 'navi.dart';
+
 const PRIMARY = "primary";
 const ORANGE = "orange";
 const WHITE = "white";
@@ -150,7 +152,7 @@ class _DiaryState extends State<Diary> {
                           setState(() {
                             Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => DiaryList()));
+                                MaterialPageRoute(builder: (context) => RootScreen()));
                           });
                         }
                       },
@@ -241,7 +243,7 @@ class _DiaryState extends State<Diary> {
 
 
 Future<String> sendDiaryToBackend(String text, String title, DateTime date) async {
-  var url = Uri.parse('https://9ee4-125-138-128-205.ngrok-free.app/posts/'); // Replace with your Flask server URL
+  var url = Uri.parse('https://72ab-203-230-197-70.ngrok-free.app/posts/'); // Replace with your Flask server URL
 
   // Format the date to send in "%Y-%m-%d" format
   var formattedDate = "${date.year}-${_twoDigits(date.month)}-${_twoDigits(date.day)}";

@@ -118,7 +118,7 @@ class _DiaryListState extends State<DiaryList> {
 
   Future<void> fetchDataFromAPI() async {
     try {
-      final response = await http.get(Uri.parse('https://9ee4-125-138-128-205.ngrok-free.app/get_list/'));
+      final response = await http.get(Uri.parse('https://72ab-203-230-197-70.ngrok-free.app/get_list/'));
 
       if (response.statusCode == 200) {
         final dynamic data = json.decode(response.body);

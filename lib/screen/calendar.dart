@@ -90,7 +90,7 @@ class _CalendarState extends State<Calendar> {
   }
 
   Future<String> sendEventToBackend(String title, String date) async {
-    var url = Uri.parse('https://9ee4-125-138-128-205.ngrok-free.app/calendar/'); // 실제 서버 URL로 변경
+    var url = Uri.parse('https://72ab-203-230-197-70.ngrok-free.app/calendar/'); // 실제 서버 URL로 변경
 
     var response = await http.post(
       url,

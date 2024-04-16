@@ -205,7 +205,7 @@ class _HomeState extends State<Home> {
   }
   Future<void> fetchProfileDataFromAPI() async {
     try {
-      final response = await http.get(Uri.parse('https://9ee4-125-138-128-205.ngrok-free.app/get_profile/'));
+      final response = await http.get(Uri.parse('https://72ab-203-230-197-70.ngrok-free.app/get_profile/'));
 
       if (response.statusCode == 200) {
         final dynamic data = json.decode(response.body);
@@ -244,7 +244,7 @@ class _HomeState extends State<Home> {
   }
   Future<void> fetchEventDataFromAPI() async {
     try {
-      final response = await http.get(Uri.parse('https://9ee4-125-138-128-205.ngrok-free.app/get_calendar_events/'));
+      final response = await http.get(Uri.parse('https://72ab-203-230-197-70.ngrok-free.app/get_calendar_events/'));
 
       if (response.statusCode == 200) {
         final dynamic data = json.decode(response.body);
@@ -271,7 +271,7 @@ class _HomeState extends State<Home> {
   }
   Future<void> fetchSolutionDataFromAPI() async {
     try {
-      final response = await http.get(Uri.parse('https://9ee4-125-138-128-205.ngrok-free.app/get_solution/'));
+      final response = await http.get(Uri.parse('https://72ab-203-230-197-70.ngrok-free.app/get_solution/'));
 
       if (response.statusCode == 200) {
         final dynamic data = json.decode(response.body);

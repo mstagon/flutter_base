@@ -31,7 +31,7 @@ class _LineChartSample2State extends State<Health> {
   }
 
   Future<void> fetchDataFromFlask(String dataType, Function(List<Map<String, dynamic>> data) updateState) async {
-    final response = await http.get(Uri.parse('https://9ee4-125-138-128-205.ngrok-free.app/get_health?type=$dataType'));
+    final response = await http.get(Uri.parse('https://72ab-203-230-197-70.ngrok-free.app/get_health?type=$dataType'));
 
     if (response.statusCode == 200) {
       final data = List<Map<String, dynamic>>.from(json.decode(response.body));

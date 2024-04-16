@@ -28,7 +28,7 @@ class ChatScreenState extends State<Chat> {
   final TextEditingController _textController = TextEditingController();
 
   Future<String> sendDiaryToBackend(String text) async {
-    var url = Uri.parse("https://9ee4-125-138-128-205.ngrok-free.app/chat/solution/"); // Replace with your Flask server URL
+    var url = Uri.parse("https://72ab-203-230-197-70.ngrok-free.app/chat/solution/");
 
     var response = await http.post(
       url,

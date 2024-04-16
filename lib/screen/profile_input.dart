@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:untitled1/screen/home.dart';
 import 'package:http/http.dart' as http;
 
+import 'navi.dart';
+
 const PRIMARY = "primary";
 const ORANGE = "orange";
 const WHITE = "white";
@@ -213,7 +215,7 @@ class _ProfileInputState extends State<ProfileInput> {
           setState(() {
             Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Home()));
+                MaterialPageRoute(builder: (context) => RootScreen()));
           });
         }
       },
@@ -226,7 +228,7 @@ class _ProfileInputState extends State<ProfileInput> {
 }
 
 Future<String> sendDiaryToBackend(String age, String name, String breed, String sex, String weight, String feed) async {
-  var url = Uri.parse('https://9ee4-125-138-128-205.ngrok-free.app/profile/'); // Replace with your Flask server URL
+  var url = Uri.parse('https://72ab-203-230-197-70.ngrok-free.app/profile/'); // Replace with your Flask server URL
 
 
   var response = await http.post(
